@@ -5,11 +5,7 @@ void main() {
   runApp(MaterialApp(
     home: Home()
   ));
-
-
 }
-
-
 
 class Home extends StatelessWidget {
   @override
@@ -18,7 +14,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text("LocalEyes"),
           centerTitle: true,
-          backgroundColor: Colors.indigo[900],
+          backgroundColor: Color(0xFF362d54),
         leading: IconButton(
           onPressed: (){}, ///add code here
             icon:Icon(
@@ -59,7 +55,7 @@ class Home extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 40.0,
                           fontWeight: FontWeight.bold,
-                          color: Colors.cyan[600],
+                          color: Color(0xFF5fb7cf),
                         )
                     ),
                 ),
@@ -72,7 +68,7 @@ class Home extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 43.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.cyan[600],
+                        color: Color(0xFF5fb7cf),
                       )
                   ),
                 ),
@@ -90,14 +86,19 @@ class Home extends StatelessWidget {
                         color: Colors.white,
                       ),
                   ),
-                  color: Colors.indigo[900],
+                  color: Color(0xFF362d54),
                 ),
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 20.0),
                 height: 70.0,
                 child: FlatButton(
-                  onPressed: () {}, ///add code here
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Businesses()),
+                    );
+                  }, ///add code here
                   child: Text(
                     'Choose Local Business',
                     style: TextStyle(
@@ -105,7 +106,7 @@ class Home extends StatelessWidget {
                       color: Colors.white,
                     )
                   ),
-                  color: Colors.cyan[600],
+                  color: Color(0xFF5fb7cf),
                 ),
               ),
               Container(
@@ -120,7 +121,7 @@ class Home extends StatelessWidget {
                         color: Colors.white,
                       )
                   ),
-                  color: Colors.cyan[200]
+                  color: Color(0xFFaee4ed),
                 ),
               ),
               Container(
@@ -160,5 +161,129 @@ class Home extends StatelessWidget {
         )
         */
 
+  }
+}
+
+class Businesses extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          title: Text("LocalEyes"),
+          centerTitle: true,
+          backgroundColor: Color(0xFF362d54),
+          leading: IconButton(
+            onPressed: (){
+              Navigator.pop(context);
+            },
+            icon:Icon(
+              Icons.arrow_back,
+            ),
+          ),
+          actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: Icon(
+                Icons.remove_red_eye,
+                color: Colors.white,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 30.0, top: 15.0),
+              child: Text(
+                  '0',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  )
+              ), ///change this to a variable
+            )
+          ]
+      ),
+      body: Center(
+
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 80.0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+
+                Container(
+                  padding: EdgeInsets.only(bottom: 20.0),
+                  height: 175.0,
+                  child: FlatButton(
+                    onPressed: () {
+                    },
+                    child: Align(
+                      alignment: Alignment(0, -0.8),
+                      child: Text(
+                        'Business 1',
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+
+                    color: Color(0xFF362d54),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 20.0),
+                  height: 175.0,
+                  child: FlatButton(
+                    onPressed: () {
+                    },
+                    child: Align(
+                      alignment: Alignment(0, -0.8),
+                      child: Text(
+                        'Business 2',
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 20.0),
+                  height: 175.0,
+                  child: FlatButton(
+                      onPressed: () {}, ///add code here
+                      child: Align(
+                        alignment: Alignment(0, -0.8),
+                        child: Text(
+                          'Business 3',
+                          style: TextStyle(
+                            fontSize: 25.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      color: Color(0xFFaee4ed)
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 200.0, right: 200.0),
+                  height: 50.0,
+                  child: FlatButton(
+                      onPressed: () {}, ///add code here
+                      child: Text(
+                          'Choose',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.white,
+                          )
+                      ),
+                      color: Color(0xFF362d54)
+                  ),
+                ),
+              ]
+          ),
+        ),
+      ),
+    );
   }
 }
