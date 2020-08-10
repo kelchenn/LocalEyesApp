@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
-      home: Home()
-  ));
+  runApp(MaterialApp(home: Home()));
 }
 
 class Home extends StatelessWidget {
@@ -25,17 +23,15 @@ class Home extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30.0, top: 15.0),
-              child: Text(
-                  '0',
+              child: Text('0',
                   style: TextStyle(
                     fontSize: 20.0,
-                  )
-              ), ///change this to a variable
-            )
-          ]
-      ),
-      body: Center(
+                  )),
 
+              ///change this to a variable
+            )
+          ]),
+      body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 80.0),
           child: Column(
@@ -43,30 +39,24 @@ class Home extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Center(
-                  child: Text(
-                      'LocalEyes:',
+                  child: Text('LocalEyes:',
                       style: TextStyle(
                         fontSize: 40.0,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF5fb7cf),
-                      )
-                  ),
+                      )),
                 ),
-
                 Center(
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 50.0),
-                    child: Text(
-                        'Word Games',
+                    child: Text('Word Games',
                         style: TextStyle(
                           fontSize: 40.0,
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF5fb7cf),
-                        )
-                    ),
+                        )),
                   ),
                 ),
-
                 Container(
                   padding: EdgeInsets.only(bottom: 20.0),
                   height: 70.0,
@@ -97,13 +87,11 @@ class Home extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => Businesses()),
                       );
                     },
-                    child: Text(
-                        'Choose Local Business',
+                    child: Text('Choose Local Business',
                         style: TextStyle(
                           fontSize: 18.0,
                           color: Colors.white,
-                        )
-                    ),
+                        )),
                     color: Color(0xFF5fb7cf),
                   ),
                 ),
@@ -117,13 +105,11 @@ class Home extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => Anagrams()),
                       );
                     },
-                    child: Text(
-                        'Play',
+                    child: Text('Play',
                         style: TextStyle(
                           fontSize: 20.0,
                           color: Colors.white,
-                        )
-                    ),
+                        )),
                     color: Color(0xFFaee4ed),
                   ),
                 ),
@@ -136,38 +122,21 @@ class Home extends StatelessWidget {
                         context,
                         MaterialPageRoute(builder: (context) => Rewards()),
                       );
-                    }, ///add code here
-                    child: Text(
-                        'Rewards',
+                    },
+
+                    ///add code here
+                    child: Text('Rewards',
                         style: TextStyle(
                           fontSize: 20.0,
                           color: Colors.white,
-                        )
-                    ),
+                        )),
                     color: Colors.blueGrey[100],
-
                   ),
                 ),
-              ]
-          ),
+              ]),
         ),
       ),
     );
-
-    /*child: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.arrow_back),
-          color: Colors.blue,
-        )
-          child: RaisedButton.icon(
-          onPressed: () {},
-          icon: Icon(
-            Icons.remove_red_eye,
-          ),
-          label: Text("hi"),
-          color: Colors.amber,
-        )
-        */
   }
 }
 
@@ -176,15 +145,15 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("About LocalEyes", style: TextStyle(
-              color: Color(0xFF362d54))),
+          title: Text("About LocalEyes",
+              style: TextStyle(color: Color(0xFF362d54))),
           centerTitle: true,
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: (){
+            onPressed: () {
               Navigator.pop(context);
             },
-            icon:Icon(
+            icon: Icon(
               Icons.arrow_back,
               color: Color(0xFF362d54),
             ),
@@ -199,31 +168,27 @@ class About extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30.0, top: 15.0),
-              child: Text(
-                  '0',
+              child: Text('0',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Color(0xFF362d54),
-                  )
-              ), ///change this to a variable
-            )
-          ]
-      ),
-      body: Center(
+                  )),
 
+              ///change this to a variable
+            )
+          ]),
+      body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 80.0),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-
                 Container(
                   padding: EdgeInsets.only(bottom: 20.0),
                   height: 175.0,
                   child: FlatButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     child: Align(
                       alignment: Alignment(0, -0.8),
                       child: Text(
@@ -234,7 +199,6 @@ class About extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     color: Color(0xFF362d54),
                   ),
                 ),
@@ -242,8 +206,7 @@ class About extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 20.0),
                   height: 175.0,
                   child: FlatButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     child: Align(
                       alignment: Alignment(0, -0.8),
                       child: Text(
@@ -261,7 +224,9 @@ class About extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 20.0),
                   height: 175.0,
                   child: FlatButton(
-                      onPressed: () {}, ///add code here
+                      onPressed: () {},
+
+                      ///add code here
                       child: Align(
                         alignment: Alignment(0, -0.8),
                         child: Text(
@@ -272,32 +237,29 @@ class About extends StatelessWidget {
                           ),
                         ),
                       ),
-                      color: Color(0xFFaee4ed)
-                  ),
+                      color: Color(0xFFaee4ed)),
                 ),
-              ]
-          ),
+              ]),
         ),
       ),
     );
   }
 }
 
-
 class Businesses extends StatelessWidget {
+  String business;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Businesses", style: TextStyle(
-              color: Color(0xFF362d54))),
+          title: Text("Businesses", style: TextStyle(color: Color(0xFF362d54))),
           centerTitle: true,
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: (){
+            onPressed: () {
               Navigator.pop(context);
             },
-            icon:Icon(
+            icon: Icon(
               Icons.arrow_back,
               color: Color(0xFF362d54),
             ),
@@ -312,30 +274,26 @@ class Businesses extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30.0, top: 15.0),
-              child: Text(
-                  '0',
+              child: Text('0',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Color(0xFF362d54),
-                  )
-              ), ///change this to a variable
+                  )),
             )
-          ]
-      ),
+          ]),
       body: Center(
-
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 80.0),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-
                 Container(
                   padding: EdgeInsets.only(bottom: 20.0),
                   height: 175.0,
                   child: FlatButton(
                     onPressed: () {
+                      business = "business 1";
                     },
                     child: Align(
                       alignment: Alignment(0, -0.8),
@@ -347,8 +305,8 @@ class Businesses extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     color: Color(0xFF362d54),
+                    highlightColor: Colors.blueGrey[100],
                   ),
                 ),
                 Container(
@@ -356,6 +314,7 @@ class Businesses extends StatelessWidget {
                   height: 175.0,
                   child: FlatButton(
                     onPressed: () {
+                      business = "business 2";
                     },
                     child: Align(
                       alignment: Alignment(0, -0.8),
@@ -368,13 +327,16 @@ class Businesses extends StatelessWidget {
                       ),
                     ),
                     color: Color(0xFF5fb7cf),
+                    highlightColor: Colors.blueGrey[100],
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(bottom: 20.0),
-                  height: 175.0,
-                  child: FlatButton(
-                      onPressed: () {}, ///add code here
+                    padding: EdgeInsets.only(bottom: 20.0),
+                    height: 175.0,
+                    child: FlatButton(
+                      onPressed: () {
+                        business = "business 3";
+                      },
                       child: Align(
                         alignment: Alignment(0, -0.8),
                         child: Text(
@@ -385,26 +347,27 @@ class Businesses extends StatelessWidget {
                           ),
                         ),
                       ),
-                      color: Color(0xFFaee4ed)
-                  ),
+                      color: Color(0xFFaee4ed),
+                      highlightColor: Colors.blueGrey[100],
+                    )
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 50.0, right: 50.0),
                   height: 50.0,
                   child: FlatButton(
-                      onPressed: () {}, ///add code here
-                      child: Text(
-                          'Choose',
+                      onPressed: () {
+                        if ((identical(business, null)) == false) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      child: Text('Choose',
                           style: TextStyle(
                             fontSize: 20.0,
                             color: Colors.white,
-                          )
-                      ),
-                      color: Color(0xFF362d54)
-                  ),
+                          )),
+                      color: Color(0xFF362d54)),
                 ),
-              ]
-          ),
+              ]),
         ),
       ),
     );
@@ -416,20 +379,18 @@ class Anagrams extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-              'Level 1',
+          title: Text('Level 1',
               style: TextStyle(
                 fontSize: 20.0,
                 color: Color(0xFF362d54),
-              )
-          ),
+              )),
           centerTitle: true,
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: (){
+            onPressed: () {
               Navigator.pop(context);
             },
-            icon:Icon(Icons.arrow_back),
+            icon: Icon(Icons.arrow_back),
             color: Color(0xFF362d54),
           ),
           actions: <Widget>[
@@ -442,409 +403,375 @@ class Anagrams extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30.0, top: 15.0),
-              child: Text(
-                  '0',
+              child: Text('0',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Color(0xFF362d54),
-                  )
+                  )),
+            ),
+          ]),
+      body: Column(children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(top: 50.0),
+        ),
+        Row(
+
+          ///letter buttons
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left: 60.0),
               ),
-            ),
-          ]
-      ),
-      body:Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 50.0),
-            ),
-            Row( ///letter buttons
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(left: 60.0),
-                  ),
-                  Container(
-                    width: 60.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "A",
-                          style: TextStyle(
-                            fontSize: 50.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF5fb7cf),
-                          )
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 60.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "B",
-                          style: TextStyle(
-                            fontSize: 50.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF5fb7cf),
-                          )
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 60.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "C",
-                          style: TextStyle(
-                            fontSize: 50.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF5fb7cf),
-                          )
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 60.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "D",
-                          style: TextStyle(
-                            fontSize: 50.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF5fb7cf),
-                          )
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 60.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "E",
-                          style: TextStyle(
-                            fontSize: 50.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF5fb7cf),
-                          )
-                      ),
-                    ),
-                  ),
-                ]
-            ),
-            Row( ///line and enter
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(left: 60.0),
-                ),
-                Container(
-                  child: Text(
-                      "_________  ",
+              Container(
+                width: 60.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("A",
                       style: TextStyle(
                         fontSize: 50.0,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF5fb7cf),
-                      )
+                      )),
+                ),
+              ),
+              Container(
+                width: 60.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("B",
+                      style: TextStyle(
+                        fontSize: 50.0,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF5fb7cf),
+                      )),
+                ),
+              ),
+              Container(
+                width: 60.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("C",
+                      style: TextStyle(
+                        fontSize: 50.0,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF5fb7cf),
+                      )),
+                ),
+              ),
+              Container(
+                width: 60.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("D",
+                      style: TextStyle(
+                        fontSize: 50.0,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF5fb7cf),
+                      )),
+                ),
+              ),
+              Container(
+                width: 60.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("E",
+                      style: TextStyle(
+                        fontSize: 50.0,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF5fb7cf),
+                      )),
+                ),
+              ),
+            ]),
+        Row(
+          ///line and enter
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(left: 60.0),
+            ),
+            Container(
+              child: Text("_________  ",
+                  style: TextStyle(
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF5fb7cf),
+                  )),
+            ),
+            Container(
+              child: FlatButton(
+                onPressed: () {},
+                child: Text(
+                  'Enter',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.white,
                   ),
                 ),
-                Container(
-                  child: FlatButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Enter',
+                color: Color(0xFFaee4ed),
+              ),
+            )
+          ],
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 50.0),
+        ),
+        Row(
+
+          /// first row of words
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                width: 100.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("word",
                       style: TextStyle(
-                        fontSize: 16.0,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
                         color: Colors.white,
-                      ),
-                    ),
-                    color: Color(0xFFaee4ed),
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 50.0),
-            ),
-            Row( /// first row of words
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    width: 100.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                  Container(
-                    width: 100.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                ]
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10.0),
-            ),
-            Row( /// second row of words
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    width: 100.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                  Container(
-                    width: 100.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                ]
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10.0),
-            ),
-            Row( /// 3
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    width: 100.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                  Container(
-                    width: 100.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                ]
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10.0),
-            ),
-            Row( /// 4
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    width: 150.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "longer word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                  Container(
-                    width: 150.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "longer word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                ]
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10.0),
-            ),
-            Row( /// 5
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    width: 150.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "longer word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                  Container(
-                    width: 150.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "longer word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                ]
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10.0),
-            ),
-            Row( /// 6
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    width: 150.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "longer word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                  Container(
-                    width: 150.0,
-                    height: 30.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                          "longer word",
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )
-                      ),
-                    ),
-                    color: Color(0xFF5fb7cf),
-                  ),
-                ]
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 50.0),
-            ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    height: 70.0,
-                    width: 70.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Hint',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                      color: Color(0xFFaee4ed),
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+              Container(
+                width: 100.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("word",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+            ]),
+        Padding(
+          padding: EdgeInsets.only(top: 10.0),
+        ),
+        Row(
+
+          /// second row of words
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                width: 100.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("word",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+              Container(
+                width: 100.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("word",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+            ]),
+        Padding(
+          padding: EdgeInsets.only(top: 10.0),
+        ),
+        Row(
+
+          /// 3
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                width: 100.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("word",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+              Container(
+                width: 100.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("word",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+            ]),
+        Padding(
+          padding: EdgeInsets.only(top: 10.0),
+        ),
+        Row(
+
+          /// 4
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                width: 150.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("longer word",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+              Container(
+                width: 150.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("longer word",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+            ]),
+        Padding(
+          padding: EdgeInsets.only(top: 10.0),
+        ),
+        Row(
+
+          /// 5
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                width: 150.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("longer word",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+              Container(
+                width: 150.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("longer word",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+            ]),
+        Padding(
+          padding: EdgeInsets.only(top: 10.0),
+        ),
+        Row(
+
+          /// 6
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                width: 150.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("longer word",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+              Container(
+                width: 150.0,
+                height: 30.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text("longer word",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
+                ),
+                color: Color(0xFF5fb7cf),
+              ),
+            ]),
+        Padding(
+          padding: EdgeInsets.only(top: 50.0),
+        ),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                height: 70.0,
+                width: 70.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Hint',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.white,
                     ),
                   ),
-                  Container(
-                    height: 70.0,
-                    width: 70.0,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Clear',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                      color: Color(0xFFaee4ed),
+                  color: Color(0xFFaee4ed),
+                ),
+              ),
+              Container(
+                height: 70.0,
+                width: 70.0,
+                child: FlatButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Clear',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.white,
                     ),
                   ),
-                ]
-            ),
-          ]
-      ),
+                  color: Color(0xFFaee4ed),
+                ),
+              ),
+            ]),
+      ]),
     );
   }
 }
@@ -854,15 +781,14 @@ class Rewards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Rewards", style: TextStyle(
-              color: Color(0xFF362d54))),
+          title: Text("Rewards", style: TextStyle(color: Color(0xFF362d54))),
           centerTitle: true,
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: (){
+            onPressed: () {
               Navigator.pop(context);
             },
-            icon:Icon(
+            icon: Icon(
               Icons.arrow_back,
               color: Color(0xFF362d54),
             ),
@@ -877,31 +803,27 @@ class Rewards extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30.0, top: 15.0),
-              child: Text(
-                  '0',
+              child: Text('0',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Color(0xFF362d54),
-                  )
-              ), ///change this to a variable
-            )
-          ]
-      ),
-      body: Center(
+                  )),
 
+              ///change this to a variable
+            )
+          ]),
+      body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 80.0),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-
                 Container(
                   padding: EdgeInsets.only(bottom: 20.0),
                   height: 175.0,
                   child: FlatButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     child: Align(
                       alignment: Alignment(0, -0.8),
                       child: Text(
@@ -912,7 +834,6 @@ class Rewards extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     color: Color(0xFF362d54),
                   ),
                 ),
@@ -920,8 +841,7 @@ class Rewards extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 20.0),
                   height: 175.0,
                   child: FlatButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     child: Align(
                       alignment: Alignment(0, -0.8),
                       child: Text(
@@ -939,7 +859,9 @@ class Rewards extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 20.0),
                   height: 175.0,
                   child: FlatButton(
-                      onPressed: () {}, ///add code here
+                      onPressed: () {},
+
+                      ///add code here
                       child: Align(
                         alignment: Alignment(0, -0.8),
                         child: Text(
@@ -950,29 +872,25 @@ class Rewards extends StatelessWidget {
                           ),
                         ),
                       ),
-                      color: Color(0xFFaee4ed)
-                  ),
+                      color: Color(0xFFaee4ed)),
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 50.0, right: 50.0),
                   height: 50.0,
                   child: FlatButton(
-                      onPressed: () {}, ///add code here
-                      child: Text(
-                          'Select',
+                      onPressed: () {},
+
+                      ///add code here
+                      child: Text('Select',
                           style: TextStyle(
                             fontSize: 20.0,
                             color: Colors.white,
-                          )
-                      ),
-                      color: Color(0xFF362d54)
-                  ),
+                          )),
+                      color: Color(0xFF362d54)),
                 ),
-              ]
-          ),
+              ]),
         ),
       ),
     );
   }
 }
-
