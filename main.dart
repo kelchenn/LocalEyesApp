@@ -176,25 +176,20 @@ class _HomeState extends State<Home> {
   }
 }
 
-class Businesses extends StatefulWidget {
-  @override
-  _BusinessesState createState() => _BusinessesState();
-}
-
-class _BusinessesState extends State<Businesses> {
+class Businesses extends StatelessWidget {
+  String business;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Businesses", style: TextStyle(
-              color: Color(0xFF362d54))),
+          title: Text("Businesses", style: TextStyle(color: Color(0xFF362d54))),
           centerTitle: true,
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: (){
+            onPressed: () {
               Navigator.pop(context);
             },
-            icon:Icon(
+            icon: Icon(
               Icons.arrow_back,
               color: Color(0xFF362d54),
             ),
@@ -209,30 +204,26 @@ class _BusinessesState extends State<Businesses> {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30.0, top: 15.0),
-              child: Text(
-                  '0',
+              child: Text('0',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Color(0xFF362d54),
-                  )
-              ), ///change this to a variable
+                  )),
             )
-          ]
-      ),
+          ]),
       body: Center(
-
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 80.0),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-
                 Container(
                   padding: EdgeInsets.only(bottom: 20.0),
                   height: 175.0,
                   child: FlatButton(
                     onPressed: () {
+                      business = "business 1";
                     },
                     child: Align(
                       alignment: Alignment(0, -0.8),
@@ -244,8 +235,8 @@ class _BusinessesState extends State<Businesses> {
                         ),
                       ),
                     ),
-
                     color: Color(0xFF362d54),
+                    highlightColor: Colors.blueGrey[100],
                   ),
                 ),
                 Container(
@@ -253,6 +244,7 @@ class _BusinessesState extends State<Businesses> {
                   height: 175.0,
                   child: FlatButton(
                     onPressed: () {
+                      business = "business 2";
                     },
                     child: Align(
                       alignment: Alignment(0, -0.8),
@@ -265,13 +257,16 @@ class _BusinessesState extends State<Businesses> {
                       ),
                     ),
                     color: Color(0xFF5fb7cf),
+                    highlightColor: Colors.blueGrey[100],
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(bottom: 20.0),
-                  height: 175.0,
-                  child: FlatButton(
-                      onPressed: () {}, ///add code here
+                    padding: EdgeInsets.only(bottom: 20.0),
+                    height: 175.0,
+                    child: FlatButton(
+                      onPressed: () {
+                        business = "business 3";
+                      },
                       child: Align(
                         alignment: Alignment(0, -0.8),
                         child: Text(
@@ -282,31 +277,33 @@ class _BusinessesState extends State<Businesses> {
                           ),
                         ),
                       ),
-                      color: Color(0xFFaee4ed)
-                  ),
+                      color: Color(0xFFaee4ed),
+                      highlightColor: Colors.blueGrey[100],
+                    )
                 ),
                 Container(
                   padding: EdgeInsets.only(left: 50.0, right: 50.0),
                   height: 50.0,
                   child: FlatButton(
-                      onPressed: () {}, ///add code here
-                      child: Text(
-                          'Choose',
+                      onPressed: () {
+                        if ((identical(business, null)) == false) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      child: Text('Choose',
                           style: TextStyle(
                             fontSize: 20.0,
                             color: Colors.white,
-                          )
-                      ),
-                      color: Color(0xFF362d54)
-                  ),
+                          )),
+                      color: Color(0xFF362d54)),
                 ),
-              ]
-          ),
+              ]),
         ),
       ),
     );
   }
 }
+
 
 
 class About extends StatefulWidget {
@@ -635,7 +632,9 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {
                         setState((){
-                          word+= letters.substring(0,1);
+                          if (!word.contains(letters.substring(0,1))){
+                            word+= letters.substring(0,1);
+                          }
                         });
                       },
                       child: Text(
@@ -653,7 +652,9 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {
                         setState((){
-                          word+= letters.substring(1,2);
+                          if (!word.contains(letters.substring(1,2))){
+                            word+= letters.substring(1,2);
+                          }
                         });
                       },
                       child: Text(
@@ -671,7 +672,9 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {
                         setState((){
-                          word+= letters.substring(2,3);
+                          if (!word.contains(letters.substring(2,3))){
+                            word+= letters.substring(2,3);
+                          }
                         });
                       },
                       child: Text(
@@ -689,7 +692,9 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {
                         setState((){
-                          word+= letters.substring(3,4);
+                          if (!word.contains(letters.substring(3,4))){
+                            word+= letters.substring(3,4);
+                          }
                         });
                       },
                       child: Text(
@@ -707,7 +712,9 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {
                         setState((){
-                          word+= letters.substring(4,5);
+                          if (!word.contains(letters.substring(4,5))){
+                            word+= letters.substring(4,5);
+                          }
                         });
                       },
                       child: Text(
@@ -733,7 +740,7 @@ class _AnagramsState extends State<Anagrams> {
                   )
                 ),
                 color: Color(0xFF5fb7cf),
-                margin: EdgeInsets.only(left:60.0, right: 160.0),
+                margin: EdgeInsets.only(left:60.0, right: 160.0, top: 30.0),
             ),
 
             Row( ///line and enter
