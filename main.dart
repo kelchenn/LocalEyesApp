@@ -176,8 +176,14 @@ class _HomeState extends State<Home> {
   }
 }
 
-class Businesses extends StatelessWidget {
+class Businesses extends StatefulWidget {
+  @override
+  _BusinessesState createState() => _BusinessesState();
+}
+
+class _BusinessesState extends State<Businesses> {
   String business;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -570,19 +576,26 @@ class Anagrams extends StatefulWidget {
 
 class _AnagramsState extends State<Anagrams> {
   /// anagrams variables
-  //array for the words. temp right now. use File IO later
-  // have a for loop and change the level number by using the index
-  //string for storing the word they entered
-  String letters = "FBCDE";
+
+  int i = 14;
+  //pretend "file" is the file
+  List file=[1, "IDARY", "DIARY", "DAIRY", "AIR", "RAID", "RAY", "DRAY", "YARD", "ARID", "DAY", "DRY", "AID", 2, "SORDW", "SWORD", "WORDS", "DOWS", "WORD", "ROWS", "RODS", "ROW", "SOW", "ROD", "SOD", 3, "JUICE", "JEU", "CUE", "CUI", "ECU", "ICE"];
+  int level = 1;
+  String letters = "IDARY";
+  List wordList = ["DIARY", "DAIRY", "AIR", "RAID", "RAY", "DRAY", "YARD", "ARID", "DAY", "DRY", "AID"];
+  int nWords = 11;
   bool entered = false;
   String word = "";
+  bool won = false;
+  List enteredWords = ["?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?"];
+  int foundWords = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-              'Level 1',
+              'Level ' + level.toString(),
               style: TextStyle(
                 fontSize: 20.0,
                 color: Color(0xFF362d54),
@@ -734,7 +747,7 @@ class _AnagramsState extends State<Anagrams> {
                 child: Text(
                   '$word',
                   style: TextStyle(
-                    fontSize: 30.0,
+                    fontSize: 35.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   )
@@ -764,6 +777,52 @@ class _AnagramsState extends State<Anagrams> {
                     onPressed: () {
                       entered = true;
                       print(word);
+                      if (wordList.contains(word)){ //check if the word is valid
+                        print(wordList.indexOf(word));
+                        if(!enteredWords.contains(word)){ //calculate how many words they've gotten so far
+                          setState(() {
+                            foundWords++;
+                          });
+                        }
+                        setState(() {
+                          enteredWords[wordList.indexOf(word)] = word;
+                        });
+                      }
+                      print(nWords);
+                      print(foundWords);
+                      if (foundWords == nWords){ //if they found all the words
+                        print("won");
+                        won = true;
+                      }
+
+                      ///insert message here? not rly sure
+
+                      //new level:
+                      if (won==true){
+                        setState(() {
+                          level++;
+                        });
+                        wordList.clear(); //empty word list
+                        print(wordList);
+                        while(file[i]!=level+1){ //get new words from file
+                          wordList.add(file[i]);
+                          setState(() {
+                            i++; //stop right here in the array for next time
+                          });
+
+                        }
+                        print(wordList);
+                        //reset variables:
+                        foundWords = 0;
+                        nWords = wordList.length;
+                        enteredWords.clear();
+                        for(int j = 0; j < wordList.length; j++){
+                          enteredWords.add("?");
+                        }
+
+                      }
+
+
                     },
                     child: Text(
                       'Enter',
@@ -789,7 +848,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "word",
+                          enteredWords[0],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -805,7 +864,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "word",
+                          enteredWords[1],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -829,7 +888,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "word",
+                          enteredWords[2],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -845,7 +904,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "word",
+                          enteredWords[3],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -869,7 +928,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "word",
+                          enteredWords[4],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -885,7 +944,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "word",
+                          enteredWords[5],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -909,7 +968,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "longer word",
+                          enteredWords[6],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -925,7 +984,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "longer word",
+                          enteredWords[7],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -949,7 +1008,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "longer word",
+                          enteredWords[8],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -965,7 +1024,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "longer word",
+                          enteredWords[9],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -989,7 +1048,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "longer word",
+                          enteredWords[10],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -1005,7 +1064,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {},
                       child: Text(
-                          "longer word",
+                          enteredWords[11],
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -1045,7 +1104,7 @@ class _AnagramsState extends State<Anagrams> {
                     child: FlatButton(
                       onPressed: () {
                         setState((){
-                          word = " ";
+                          word = "";
                         });
                       },
                       child: Text(
