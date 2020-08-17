@@ -21,7 +21,8 @@ class Levels extends StatefulWidget {
   final int eyes;
   Levels(this.eyes);
   @override
-  _LevelsState createState() => _LevelsState(eyes,
+  _LevelsState createState() => _LevelsState(
+    eyes,
     levels: List.generate(
       50,
           (i) => Level(
@@ -171,15 +172,22 @@ class Anagrams extends StatefulWidget {
 }
 
 class _AnagramsState extends State<Anagrams> {
+  /// anagrams variables
   int eyes;
   _AnagramsState(this.eyes);
-  /// anagrams variables
-  //array for the words. temp right now. use File IO later
-  //string for storing the word they entered
-  String letters = "FBCDE";
+  int i = 14;
+  //pretend "file" is the file
+  List file=[1, "IDARY", "DIARY", "DAIRY", "AIR", "RAID", "RAY", "DRAY", "YARD", "ARID", "DAY", "DRY", "AID", 2, "SORDW", "SWORD", "WORDS", "DOWS", "WORD", "ROWS", "RODS", "ROW", "SOW", "ROD", "SOD", 3, "JUICE", "JEU", "CUE", "CUI", "ECU", "ICE"];
+  int level = 1;
+  String letters = "IDARY";
+  List wordList = ["DIARY", "DAIRY", "AIR", "RAID", "RAY", "DRAY", "YARD", "ARID", "DAY", "DRY", "AID"];
+  int nWords = 11;
   bool entered = false;
   String word = "";
   bool won = false;
+  List enteredWords = ["?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?"];
+  int foundWords = 0;
+
   @override
   Widget build(BuildContext context) {
     if (won == true) {
@@ -195,18 +203,20 @@ class _AnagramsState extends State<Anagrams> {
     final Level levels = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-          title: Text('${levels.title}',
+          title: Text(
+              '${levels.title}',
               style: TextStyle(
                 fontSize: 20.0,
                 color: Color(0xFF362d54),
-              )),
+              )
+          ),
           centerTitle: true,
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: () {
+            onPressed: (){
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back),
+            icon:Icon(Icons.arrow_back),
             color: Color(0xFF362d54),
           ),
           actions: <Widget>[
@@ -219,428 +229,506 @@ class _AnagramsState extends State<Anagrams> {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30.0, top: 15.0),
-              child: Text('$eyes',
+              child: Text(
+                  '0',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Color(0xFF362d54),
-                  )),
+                  )
+              ),
             ),
-          ]),
-      body: Column(children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(top: 50.0),
-        ),
-        Row(
-
-          ///letter buttons
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(left: 60.0),
-              ),
-              Container(
-                ///first letter
-                width: 60.0,
-                child: FlatButton(
-                  onPressed: () {
-                    setState(() {
-                      if (!word.contains(letters.substring(0, 1))) {
-                        word += letters.substring(0, 1);
-                      }
-                    });
-                  },
-                  child: Text(
-                      letters.substring(
-                          0, 1), //change this to get from the array
-                      style: TextStyle(
-                        fontSize: 50.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF5fb7cf),
-                      )),
-                ),
-              ),
-              Container(
-                width: 60.0,
-                child: FlatButton(
-                  onPressed: () {
-                    setState(() {
-                      if (!word.contains(letters.substring(1, 2))) {
-                        word += letters.substring(1, 2);
-                      }
-                    });
-                  },
-                  child: Text(letters.substring(1, 2),
-                      style: TextStyle(
-                        fontSize: 50.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF5fb7cf),
-                      )),
-                ),
-              ),
-              Container(
-                width: 60.0,
-                child: FlatButton(
-                  onPressed: () {
-                    setState(() {
-                      if (!word.contains(letters.substring(2, 3))) {
-                        word += letters.substring(2, 3);
-                      }
-                    });
-                  },
-                  child: Text(letters.substring(2, 3),
-                      style: TextStyle(
-                        fontSize: 50.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF5fb7cf),
-                      )),
-                ),
-              ),
-              Container(
-                width: 60.0,
-                child: FlatButton(
-                  onPressed: () {
-                    setState(() {
-                      if (!word.contains(letters.substring(3, 4))) {
-                        word += letters.substring(3, 4);
-                      }
-                    });
-                  },
-                  child: Text(letters.substring(3, 4),
-                      style: TextStyle(
-                        fontSize: 50.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF5fb7cf),
-                      )),
-                ),
-              ),
-              Container(
-                width: 60.0,
-                child: FlatButton(
-                  onPressed: () {
-                    setState(() {
-                      if (!word.contains(letters.substring(4, 5))) {
-                        word += letters.substring(4, 5);
-                      }
-                    });
-                  },
-                  child: Text(letters.substring(4, 5),
-                      style: TextStyle(
-                        fontSize: 50.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF5fb7cf),
-                      )),
-                ),
-              ),
-            ]),
-        Container(
-          ///word selection display
-          child: Text('$word',
-              style: TextStyle(
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              )),
-          color: Color(0xFF5fb7cf),
-          margin: EdgeInsets.only(left: 60.0, right: 160.0, top: 30.0),
-        ),
-        Row(
-          ///line and enter
+          ]
+      ),
+      body:Column(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 40.0),
+              padding: EdgeInsets.only(top: 50.0),
             ),
-            Container(
-              child: Text("____________________  ",
+            Row( ///letter buttons
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 60.0),
+                  ),
+                  Container( ///first letter
+                    width: 60.0,
+                    child: FlatButton(
+                      onPressed: () {
+                        setState((){
+                          if (!word.contains(letters.substring(0,1))){
+                            word+= letters.substring(0,1);
+                          }
+                        });
+                      },
+                      child: Text(
+                          letters.substring(0,1), //change this to get from the array
+                          style: TextStyle(
+                            fontSize: 50.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF5fb7cf),
+                          )
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 60.0,
+                    child: FlatButton(
+                      onPressed: () {
+                        setState((){
+                          if (!word.contains(letters.substring(1,2))){
+                            word+= letters.substring(1,2);
+                          }
+                        });
+                      },
+                      child: Text(
+                          letters.substring(1,2),
+                          style: TextStyle(
+                            fontSize: 50.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF5fb7cf),
+                          )
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 60.0,
+                    child: FlatButton(
+                      onPressed: () {
+                        setState((){
+                          if (!word.contains(letters.substring(2,3))){
+                            word+= letters.substring(2,3);
+                          }
+                        });
+                      },
+                      child: Text(
+                          letters.substring(2,3),
+                          style: TextStyle(
+                            fontSize: 50.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF5fb7cf),
+                          )
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 60.0,
+                    child: FlatButton(
+                      onPressed: () {
+                        setState((){
+                          if (!word.contains(letters.substring(3,4))){
+                            word+= letters.substring(3,4);
+                          }
+                        });
+                      },
+                      child: Text(
+                          letters.substring(3,4),
+                          style: TextStyle(
+                            fontSize: 50.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF5fb7cf),
+                          )
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 60.0,
+                    child: FlatButton(
+                      onPressed: () {
+                        setState((){
+                          if (!word.contains(letters.substring(4,5))){
+                            word+= letters.substring(4,5);
+                          }
+                        });
+                      },
+                      child: Text(
+                          letters.substring(4,5),
+                          style: TextStyle(
+                            fontSize: 50.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF5fb7cf),
+                          )
+                      ),
+                    ),
+                  ),
+                ]
+            ),
+
+            Container( ///word selection display
+              child: Text(
+                  '$word',
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 35.0,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF5fb7cf),
-                  )),
-            ),
-            Container(
-              child: FlatButton(
-                onPressed: () {
-                  entered = true;
-                  print(word);
-                },
-                child: Text(
-                  'Enter',
-                  style: TextStyle(
-                    fontSize: 16.0,
                     color: Colors.white,
+                  )
+              ),
+              color: Color(0xFF5fb7cf),
+              margin: EdgeInsets.only(left:60.0, right: 160.0, top: 30.0),
+            ),
+
+            Row( ///line and enter
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(left: 40.0),
+                ),
+
+                Container(
+                  child: Text(
+                      "____________________  ",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF5fb7cf),
+                      )
                   ),
                 ),
-                color: Color(0xFFaee4ed),
-              ),
-            )
-          ],
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 50.0),
-        ),
-        Row(
+                Container(
+                  child: FlatButton(
+                    onPressed: () {
+                      entered = true;
+                      print(word);
+                      if (wordList.contains(word)){ //check if the word is valid
+                        print(wordList.indexOf(word));
+                        if(!enteredWords.contains(word)){ //calculate how many words they've gotten so far
+                          setState(() {
+                            foundWords++;
+                          });
+                        }
+                        setState(() {
+                          enteredWords[wordList.indexOf(word)] = word;
+                        });
+                      }
+                      print(nWords);
+                      print(foundWords);
+                      if (foundWords == nWords){ //if they found all the words
+                        print("won");
+                        won = true;
+                      }
 
-          /// first row of words
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                width: 100.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {
+                      ///insert message here? not rly sure
+                      //new level:
+                      if (won==true){
+                        setState(() {
+                          level++;
+                        });
+                        wordList.clear(); //empty word list
+                        print(wordList);
+                        while(file[i]!=level+1){ //get new words from file
+                          wordList.add(file[i]);
+                          setState(() {
+                            i++; //stop right here in the array for next time
+                          });
 
-                  },
-                  child: Text("word",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-              Container(
-                width: 100.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("word",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-            ]),
-        Padding(
-          padding: EdgeInsets.only(top: 10.0),
-        ),
-        Row(
+                        }
+                        print(wordList);
+                        //reset variables:
+                        foundWords = 0;
+                        nWords = wordList.length;
+                        enteredWords.clear();
+                        for(int j = 0; j < wordList.length; j++){
+                          enteredWords.add("?");
+                        }
 
-          /// second row of words
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                width: 100.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("word",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-              Container(
-                width: 100.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("word",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-            ]),
-        Padding(
-          padding: EdgeInsets.only(top: 10.0),
-        ),
-        Row(
+                      }
 
-          /// 3
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                width: 100.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("word",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-              Container(
-                width: 100.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("word",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-            ]),
-        Padding(
-          padding: EdgeInsets.only(top: 10.0),
-        ),
-        Row(
 
-          /// 4
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                width: 150.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("longer word",
+                    },
+                    child: Text(
+                      'Enter',
                       style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
                         color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-              Container(
-                width: 150.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("longer word",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-            ]),
-        Padding(
-          padding: EdgeInsets.only(top: 10.0),
-        ),
-        Row(
-
-          /// 5
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                width: 150.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("longer word",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-              Container(
-                width: 150.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("longer word",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-            ]),
-        Padding(
-          padding: EdgeInsets.only(top: 10.0),
-        ),
-        Row(
-
-          /// 6
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                width: 150.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("longer word",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-              Container(
-                width: 150.0,
-                height: 30.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text("longer word",
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
-                ),
-                color: Color(0xFF5fb7cf),
-              ),
-            ]),
-        Padding(
-          padding: EdgeInsets.only(top: 50.0),
-        ),
-        Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                height: 70.0,
-                width: 70.0,
-                child: FlatButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Hint',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.white,
+                      ),
+                    ),
+                    color: Color(0xFFaee4ed),
+                  ),
+                )
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 50.0),
+            ),
+            Row( /// first row of words
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[0],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                  Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[1],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                ]
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10.0),
+            ),
+            Row( /// second row of words
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[2],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                  Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[3],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                ]
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10.0),
+            ),
+            Row( /// 3
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[4],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                  Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[5],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                ]
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10.0),
+            ),
+            Row( /// 4
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: 150.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[6],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                  Container(
+                    width: 150.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[7],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                ]
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10.0),
+            ),
+            Row( /// 5
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: 150.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[8],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                  Container(
+                    width: 150.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[9],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                ]
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10.0),
+            ),
+            Row( /// 6
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: 150.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[10],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                  Container(
+                    width: 150.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[11],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                ]
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 50.0),
+            ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    height: 70.0,
+                    width: 70.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Hint',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      color: Color(0xFFaee4ed),
                     ),
                   ),
-                  color: Color(0xFFaee4ed),
-                ),
-              ),
-              Container(
-                height: 70.0,
-                width: 70.0,
-                child: FlatButton(
-                  onPressed: () {
-                    setState(() {
-                      word = " ";
-                    });
-                  },
-                  child: Text(
-                    'Clear',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.white,
+                  Container(
+                    height: 70.0,
+                    width: 70.0,
+                    child: FlatButton(
+                      onPressed: () {
+                        setState((){
+                          word = "";
+                        });
+                      },
+                      child: Text(
+                        'Clear',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      color: Color(0xFFaee4ed),
                     ),
                   ),
-                  color: Color(0xFFaee4ed),
-                ),
-              ),
-            ]),
-      ]),
+                ]
+            ),
+          ]
+      ),
     );
   }
 }
@@ -733,7 +821,8 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Businesses(eyes)),
+                        MaterialPageRoute(
+                            builder: (context) => Businesses(eyes)),
                       );
                     },
                     child: Text('Choose Local Business',
@@ -801,7 +890,6 @@ class _AboutState extends State<About> {
   _AboutState(this.eyes);
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
           title: Text("About LocalEyes",
