@@ -1,114 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:localeyes_app/services/admob_service.dart';
-
-class Level {
-  final String title;
-  Level(this.title);
-}
-
-class Win {
-  bool wins;
-  Win(this.wins);
-}
 
 void main() {
   ///for ad
   //Admob.initialize("come.example.localeyes_app");
   int eyes = 0;
   runApp(MaterialApp(home: Home(eyes)));
-}
-
-class Levels extends StatefulWidget {
-  final int eyes;
-  Levels(this.eyes);
-  @override
-  _LevelsState createState() => _LevelsState(
-    eyes,
-    levels: List.generate(
-      50,
-          (i) => Level(
-        'Level ${i + 1}',
-      ),
-    ),
-    wins: List.generate(
-      50,
-          (i) => Win(false),
-    ),
-  );
-}
-
-class _LevelsState extends State<Levels> {
-  int eyes;
-  final List<Level> levels;
-  List<Win> wins;
-
-  _LevelsState(this.eyes, {Key key, @required this.levels, this.wins});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text("Anagrams Levels",
-              style: TextStyle(color: Color(0xFF362d54))),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Home(eyes)),
-              );
-            },
-            icon: Icon(
-              Icons.arrow_back,
-              color: Color(0xFF362d54),
-            ),
-          ),
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: Icon(
-                Icons.remove_red_eye,
-                color: Color(0xFF362d54),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(right: 30.0, top: 15.0),
-              child: Text('$eyes',
-                  style: TextStyle(
-                    color: Color(0xFF362d54),
-                    fontSize: 20.0,
-                  )),
-            )
-          ]),
-      body: ListView.builder(
-        itemCount: levels.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(levels[index].title,
-                style: TextStyle(
-                  color: Color(0xFF362d54),
-                  fontSize: 20.0,
-                )),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Anagrams(eyes),
-                  settings: RouteSettings(
-                    arguments: levels[index],
-                  ),
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
 }
 
 Future<void> _alert(BuildContext context) {
@@ -146,7 +45,8 @@ Future<void> _alert(BuildContext context) {
   );
 }
 
-Future<void> _levelComplete(BuildContext context) {
+Future<void> _levelComplete(BuildContext context, int eyes, int level) {
+  eyes += 5;
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
@@ -163,20 +63,38 @@ Future<void> _levelComplete(BuildContext context) {
             color: Color(0xFF362d54),
           ),
         ),
+        actions: <Widget>[
+          FlatButton(
+            child: Text(
+              'Continue',
+              style: TextStyle(
+                color: Color(0xFF5fb7cf),
+              ),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Anagrams(eyes, level)),
+              );
+            },
+          ),
+        ],
       );
     },
   );
 }
 
+
 class Anagrams extends StatefulWidget {
   final int eyes;
-  Anagrams(this.eyes);
+  final int level;
+  Anagrams(this.eyes, this.level);
   @override
-  _AnagramsState createState() => _AnagramsState(eyes);
+  _AnagramsState createState() => _AnagramsState(eyes, level);
 }
 
 class _AnagramsState extends State<Anagrams> {
-  
+
   final ams = AdMobService();
   AdmobInterstitial _admobInterstitial;
   AdmobReward _admobReward;
@@ -241,7 +159,8 @@ class _AnagramsState extends State<Anagrams> {
   );
   /// anagrams variables
   int eyes;
-  _AnagramsState(this.eyes);
+  int level;
+  _AnagramsState(this.eyes, this.level);
   int i = 14;
   //pretend "file" is the file
   List file=[1, "IDARY", "DIARY", "DAIRY", "AIR", "RAID", "RAY", "DRAY", "YARD", "ARID", "DAY", "DRY", "AID", 2, "SORDW", "SWORD", "WORDS", "DOWS", "WORD", "ROWS", "RODS", "ROW", "SOW", "ROD", "SOD", 3, "JUICE", "JEU", "CUE", "CUI", "ECU", "ICE"];
@@ -258,21 +177,13 @@ class _AnagramsState extends State<Anagrams> {
 
   @override
   Widget build(BuildContext context) {
-    if (won == true) {
-      eyes += 5;
-      Future.delayed(const Duration(milliseconds: 3000), () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Levels(eyes)),
-        );
-      });
-      _levelComplete(context);
+    if (level == null) {
+      level = 1;
     }
-    final Level levels = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
           title: Text(
-              '${levels.title}',
+              'Level $level',
               style: TextStyle(
                 fontSize: 20.0,
                 color: Color(0xFF362d54),
@@ -446,7 +357,7 @@ class _AnagramsState extends State<Anagrams> {
                       entered = true;
                       print(word);
                       if (enteredWords.contains(word)){
-                        
+
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -456,7 +367,7 @@ class _AnagramsState extends State<Anagrams> {
                             return wordAlreadyFound;
                           },
                         );
-                        
+
                         setState((){
                           word = "";
                         });
@@ -474,7 +385,7 @@ class _AnagramsState extends State<Anagrams> {
                           word = "";
                         });
                       }else if (!wordList.contains(word)){
-                        
+
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -498,32 +409,27 @@ class _AnagramsState extends State<Anagrams> {
 
 
                       //new level:
-                      if (won==true){
-                        setState(() {
+                      Future.delayed(const Duration(milliseconds: 1000), () {
+                        if (won == true) {
+                          wordList.clear(); //empty word list
+                          print(wordList);
                           level++;
-                        });
-                        wordList.clear(); //empty word list
-                        print(wordList);
-                        while(file[i]!=level+1){ //get new words from file
-                          wordList.add(file[i]);
-                          setState(() {
-                            i++; //stop right here in the array for next time
-                          });
 
-                        }
-                        print(wordList);
-                        //reset variables:
-                        foundWords = 0;
-                        nWords = wordList.length;
-                        enteredWords.clear();
+                          //get words for next level//
 
-                        int counter = 0;
-                        for(int j = 0; j < wordList.length; j++){
-                          for (int k = 0; k < wordList[j].length(); k++){
-                            enteredWords[j].add("_ ");
+                          //reset variables:
+                          foundWords = 0;
+                          nWords = wordList.length;
+                          enteredWords.clear();
+                          for (int j = 0; j < wordList.length; j++) {
+                            enteredWords.add("?");
                           }
+
+                          Future.delayed(const Duration(milliseconds: 1000), () {
+                            _levelComplete(context, eyes, level);
+                          });
                         }
-                      }
+                      });
 
                     },
                     child: Text(
@@ -916,7 +822,7 @@ class _AnagramsState extends State<Anagrams> {
                             if(enteredWords[j].charAt(k) == '_'){
                               String newChar = wordList[j].charAt(k);
                               enteredWords[j] = enteredWords[j].substring(0,k) + newChar + enteredWords[j].substring(k+1);
-                             }
+                            }
                           }
                         }
                       },
@@ -961,7 +867,7 @@ class _AnagramsState extends State<Anagrams> {
               adUnitId: 'ca-app-pub-3940256099942544/6300978111',
               adSize: AdmobBannerSize.BANNER,
             ),
-            
+
           ]
       ),
     );
@@ -977,6 +883,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int eyes;
+  int level;
   _HomeState(this.eyes);
   @override
   Widget build(BuildContext context) {
@@ -1075,7 +982,7 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Levels(eyes)),
+                        MaterialPageRoute(builder: (context) => Anagrams(eyes, level)),
                       );
                     },
                     child: Text('Play',
