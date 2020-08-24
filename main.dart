@@ -16,7 +16,7 @@ class Win {
 
 void main() {
   ///for ad
-  Admob.initialize("come.example.localeyes_app");
+  //Admob.initialize("come.example.localeyes_app");
   int eyes = 0;
   runApp(MaterialApp(home: Home(eyes)));
 }
@@ -176,6 +176,7 @@ class Anagrams extends StatefulWidget {
 }
 
 class _AnagramsState extends State<Anagrams> {
+  
   final ams = AdMobService();
   AdmobInterstitial _admobInterstitial;
   AdmobReward _admobReward;
@@ -217,13 +218,13 @@ class _AnagramsState extends State<Anagrams> {
 
   AlertDialog wrongWord = AlertDialog(
     content: Text(
-        "NOT A WORD",
+      "NOT A WORD",
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: 25.0,
         color: Color(0xFF362d54),
         fontWeight: FontWeight.bold,
-    ),
+      ),
     ),
   );
 
@@ -238,7 +239,6 @@ class _AnagramsState extends State<Anagrams> {
       ),
     ),
   );
-
   /// anagrams variables
   int eyes;
   _AnagramsState(this.eyes);
@@ -252,8 +252,9 @@ class _AnagramsState extends State<Anagrams> {
   bool entered = false;
   String word = "";
   bool won = false;
-  List enteredWords = ["?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?"];
+  List enteredWords = ["_ _ _ _ _", "_ _ _ _ _", "_ _ _", "_ _ _ _", "_ _ _", "_ _ _ _", "_ _ _ _", "_ _ _ _", "_ _ _", "_ _ _", "_ _ _", "?"];
   int foundWords = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -420,16 +421,18 @@ class _AnagramsState extends State<Anagrams> {
             ),
 
             Container( ///word selection display
-              child: Text(
-                  '$word',
-                  style: TextStyle(
-                    fontSize: 35.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )
+              child: Center(
+                child: Text(
+                    '$word',
+                    style: TextStyle(
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    )
+                ),
               ),
               color: Color(0xFF5fb7cf),
-              margin: EdgeInsets.only(left:155.0, right: 155.0, top: 30.0),
+
             ),
 
             Row( ///line and enter
@@ -443,6 +446,7 @@ class _AnagramsState extends State<Anagrams> {
                       entered = true;
                       print(word);
                       if (enteredWords.contains(word)){
+                        
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -452,6 +456,7 @@ class _AnagramsState extends State<Anagrams> {
                             return wordAlreadyFound;
                           },
                         );
+                        
                         setState((){
                           word = "";
                         });
@@ -469,6 +474,7 @@ class _AnagramsState extends State<Anagrams> {
                           word = "";
                         });
                       }else if (!wordList.contains(word)){
+                        
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -490,7 +496,7 @@ class _AnagramsState extends State<Anagrams> {
                         won = true;
                       }
 
-                      ///insert message here? not rly sure
+
                       //new level:
                       if (won==true){
                         setState(() {
@@ -510,12 +516,14 @@ class _AnagramsState extends State<Anagrams> {
                         foundWords = 0;
                         nWords = wordList.length;
                         enteredWords.clear();
+
+                        int counter = 0;
                         for(int j = 0; j < wordList.length; j++){
-                          enteredWords.add("?");
+                          for (int k = 0; k < wordList[j].length(); k++){
+                            enteredWords[j].add("_ ");
+                          }
                         }
-
                       }
-
 
                     },
                     child: Text(
@@ -531,7 +539,7 @@ class _AnagramsState extends State<Anagrams> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 50.0),
+              padding: EdgeInsets.only(top: 20.0),
             ),
             Row( /// first row of words
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -613,7 +621,7 @@ class _AnagramsState extends State<Anagrams> {
             Padding(
               padding: EdgeInsets.only(top: 10.0),
             ),
-            Row( /// 3
+            if (nWords > 4) Row( /// 3
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
@@ -632,7 +640,7 @@ class _AnagramsState extends State<Anagrams> {
                     ),
                     color: Color(0xFF5fb7cf),
                   ),
-                  Container(
+                  if (nWords > 5) Container(
                     width: 100.0,
                     height: 30.0,
                     child: FlatButton(
@@ -653,7 +661,7 @@ class _AnagramsState extends State<Anagrams> {
             Padding(
               padding: EdgeInsets.only(top: 10.0),
             ),
-            Row( /// 4
+            if (nWords > 6) Row( /// 4
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
@@ -672,7 +680,7 @@ class _AnagramsState extends State<Anagrams> {
                     ),
                     color: Color(0xFF5fb7cf),
                   ),
-                  Container(
+                  if (nWords > 7) Container(
                     width: 100.0,
                     height: 30.0,
                     child: FlatButton(
@@ -693,7 +701,7 @@ class _AnagramsState extends State<Anagrams> {
             Padding(
               padding: EdgeInsets.only(top: 10.0),
             ),
-            Row( /// 5
+            if (nWords > 8) Row( /// 5
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
@@ -712,7 +720,7 @@ class _AnagramsState extends State<Anagrams> {
                     ),
                     color: Color(0xFF5fb7cf),
                   ),
-                  Container(
+                  if (nWords > 9) Container(
                     width: 100.0,
                     height: 30.0,
                     child: FlatButton(
@@ -733,7 +741,7 @@ class _AnagramsState extends State<Anagrams> {
             Padding(
               padding: EdgeInsets.only(top: 10.0),
             ),
-            Row( /// 6
+            if (nWords > 10) Row( /// 6
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
@@ -752,7 +760,7 @@ class _AnagramsState extends State<Anagrams> {
                     ),
                     color: Color(0xFF5fb7cf),
                   ),
-                  Container(
+                  if (nWords > 11) Container(
                     width: 100.0,
                     height: 30.0,
                     child: FlatButton(
@@ -771,7 +779,126 @@ class _AnagramsState extends State<Anagrams> {
                 ]
             ),
             Padding(
-              padding: EdgeInsets.only(top: 30.0),
+              padding: EdgeInsets.only(top: 10.0),
+            ),
+            if (nWords > 12) Row( /// 7
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[2],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                  if (nWords > 13) Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[3],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                ]
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10.0),
+            ),
+            if (nWords > 14) Row( /// 8
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[2],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                  if (nWords > 15) Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[3],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                ]
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10.0),
+            ),if (nWords > 16) Row( /// 9
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[2],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                  if (nWords > 17) Container(
+                    width: 100.0,
+                    height: 30.0,
+                    child: FlatButton(
+                      onPressed: () {},
+                      child: Text(
+                          enteredWords[3],
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      ),
+                    ),
+                    color: Color(0xFF5fb7cf),
+                  ),
+                ]
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10.0),
             ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -781,7 +908,18 @@ class _AnagramsState extends State<Anagrams> {
                     height: 70.0,
                     width: 70.0,
                     child: FlatButton(
-                      onPressed: () => _admobInterstitial.load(),
+                      onPressed: (){
+                        _admobInterstitial.load();
+                        bool revealed = false;
+                        for (int j = 0; j < enteredWords.length; j++){
+                          for (int k = 0; k < enteredWords[j].length(); k++){
+                            if(enteredWords[j].charAt(k) == '_'){
+                              String newChar = wordList[j].charAt(k);
+                              enteredWords[j] = enteredWords[j].substring(0,k) + newChar + enteredWords[j].substring(k+1);
+                             }
+                          }
+                        }
+                      },
                       child: Text(
                         'Hint',
                         style: TextStyle(
@@ -816,12 +954,14 @@ class _AnagramsState extends State<Anagrams> {
             Padding(
               padding: EdgeInsets.only(top: 20.0),
             ),
+
             /// BANNER AD
             AdmobBanner(
               ///adUnitId: ams.getBannerAdId(),
               adUnitId: 'ca-app-pub-3940256099942544/6300978111',
               adSize: AdmobBannerSize.BANNER,
             ),
+            
           ]
       ),
     );
