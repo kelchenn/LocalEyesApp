@@ -214,6 +214,31 @@ class _AnagramsState extends State<Anagrams> {
           }
         });
   }
+
+  AlertDialog wrongWord = AlertDialog(
+    content: Text(
+        "NOT A WORD",
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 25.0,
+        color: Color(0xFF362d54),
+        fontWeight: FontWeight.bold,
+    ),
+    ),
+  );
+
+  AlertDialog wordAlreadyFound = AlertDialog(
+    content: Text(
+      "WORD ALREADY FOUND",
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 25.0,
+        color: Color(0xFF362d54),
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  );
+
   /// anagrams variables
   int eyes;
   _AnagramsState(this.eyes);
@@ -404,7 +429,7 @@ class _AnagramsState extends State<Anagrams> {
                   )
               ),
               color: Color(0xFF5fb7cf),
-              margin: EdgeInsets.only(left:60.0, right: 160.0, top: 30.0),
+              margin: EdgeInsets.only(left:155.0, right: 155.0, top: 30.0),
             ),
 
             Row( ///line and enter
@@ -412,13 +437,25 @@ class _AnagramsState extends State<Anagrams> {
                 Padding(
                   padding: EdgeInsets.only(left: 160.0),
                 ),
-
                 Container(
                   child: FlatButton(
                     onPressed: () {
                       entered = true;
                       print(word);
-                      if (wordList.contains(word)){ //check if the word is valid
+                      if (enteredWords.contains(word)){
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            Future.delayed(Duration(seconds: 1), () {
+                              Navigator.of(context).pop(true);
+                            });
+                            return wordAlreadyFound;
+                          },
+                        );
+                        setState((){
+                          word = "";
+                        });
+                      }else if (wordList.contains(word)){ //check if the word is valid
                         print(wordList.indexOf(word));
                         if(!enteredWords.contains(word)){ //calculate how many words they've gotten so far
                           setState(() {
@@ -428,7 +465,24 @@ class _AnagramsState extends State<Anagrams> {
                         setState(() {
                           enteredWords[wordList.indexOf(word)] = word;
                         });
+                        setState((){
+                          word = "";
+                        });
+                      }else if (!wordList.contains(word)){
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            Future.delayed(Duration(seconds: 1), () {
+                              Navigator.of(context).pop(true);
+                            });
+                            return wrongWord;
+                          },
+                        );
+                        setState((){
+                          word = "";
+                        });
                       }
+
                       print(nWords);
                       print(foundWords);
                       if (foundWords == nWords){ //if they found all the words
@@ -603,7 +657,7 @@ class _AnagramsState extends State<Anagrams> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
-                    width: 150.0,
+                    width: 100.0,
                     height: 30.0,
                     child: FlatButton(
                       onPressed: () {},
@@ -619,7 +673,7 @@ class _AnagramsState extends State<Anagrams> {
                     color: Color(0xFF5fb7cf),
                   ),
                   Container(
-                    width: 150.0,
+                    width: 100.0,
                     height: 30.0,
                     child: FlatButton(
                       onPressed: () {},
@@ -643,7 +697,7 @@ class _AnagramsState extends State<Anagrams> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
-                    width: 150.0,
+                    width: 100.0,
                     height: 30.0,
                     child: FlatButton(
                       onPressed: () {},
@@ -659,7 +713,7 @@ class _AnagramsState extends State<Anagrams> {
                     color: Color(0xFF5fb7cf),
                   ),
                   Container(
-                    width: 150.0,
+                    width: 100.0,
                     height: 30.0,
                     child: FlatButton(
                       onPressed: () {},
@@ -683,7 +737,7 @@ class _AnagramsState extends State<Anagrams> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
-                    width: 150.0,
+                    width: 100.0,
                     height: 30.0,
                     child: FlatButton(
                       onPressed: () {},
@@ -699,7 +753,7 @@ class _AnagramsState extends State<Anagrams> {
                     color: Color(0xFF5fb7cf),
                   ),
                   Container(
-                    width: 150.0,
+                    width: 100.0,
                     height: 30.0,
                     child: FlatButton(
                       onPressed: () {},
