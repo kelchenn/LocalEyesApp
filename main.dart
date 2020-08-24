@@ -159,12 +159,12 @@ class _AnagramsState extends State<Anagrams> {
   );
   /// anagrams variables
   int eyes;
-  int level;
+  int level = 1;
   _AnagramsState(this.eyes, this.level);
   int i = 14;
   //pretend "file" is the file
   List file=[1, "IDARY", "DIARY", "DAIRY", "AIR", "RAID", "RAY", "DRAY", "YARD", "ARID", "DAY", "DRY", "AID", 2, "SORDW", "SWORD", "WORDS", "DOWS", "WORD", "ROWS", "RODS", "ROW", "SOW", "ROD", "SOD", 3, "JUICE", "JEU", "CUE", "CUI", "ECU", "ICE"];
-  int level = 1;
+
   String letters = "IDARY";
   List wordList = ["DIARY", "DAIRY", "AIR", "RAID", "RAY", "DRAY", "YARD", "ARID", "DAY", "DRY", "AID"];
   int nWords = 11;
@@ -193,7 +193,9 @@ class _AnagramsState extends State<Anagrams> {
           backgroundColor: Colors.white,
           leading: IconButton(
             onPressed: (){
-              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder:(context) => Home(eyes)),
+              );
             },
             icon:Icon(Icons.arrow_back),
             color: Color(0xFF362d54),
@@ -209,7 +211,7 @@ class _AnagramsState extends State<Anagrams> {
             Padding(
               padding: EdgeInsets.only(right: 30.0, top: 15.0),
               child: Text(
-                  '0',
+                  '$eyes',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Color(0xFF362d54),
