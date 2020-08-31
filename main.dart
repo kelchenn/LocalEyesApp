@@ -163,6 +163,7 @@ Future<void> _alert(BuildContext context) {
 }
 
 Future<void> _levelComplete(BuildContext context, int eyes, int level) {
+
   eyes += 5;
   return showDialog<void>(
     context: context,
@@ -200,7 +201,6 @@ Future<void> _levelComplete(BuildContext context, int eyes, int level) {
     },
   );
 }
-
 
 class Anagrams extends StatefulWidget {
   final int eyes;
@@ -316,7 +316,8 @@ class _AnagramsState extends State<Anagrams> {
           leading: IconButton(
             onPressed: (){
               Navigator.push(
-                context, MaterialPageRoute(builder:(context) => Home(eyes)),
+                context,
+                MaterialPageRoute(builder: (context) => Home(eyes)),
               );
             },
             icon:Icon(Icons.arrow_back),
@@ -348,7 +349,6 @@ class _AnagramsState extends State<Anagrams> {
               padding: EdgeInsets.only(top: 30.0),
             ),
             Row(
-
               ///letter buttons
                 children: <Widget>[
                   Padding(
@@ -476,15 +476,15 @@ class _AnagramsState extends State<Anagrams> {
                     style: TextStyle(
                       fontSize: 35.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Color(0xFF5fb7cf),
                     )
                 ),
               ),
-              color: Color(0xFF5fb7cf),
+              color: Colors.white,
 
             ),
 
-            Row( ///line and enter
+            Row( ///enter
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(left: 160.0),
@@ -548,6 +548,7 @@ class _AnagramsState extends State<Anagrams> {
                       if (foundWords == nWords){ //if they found all the words
                         print("won");
                         won = true;
+                        _admobInterstitial.load();
                       }
 
 
@@ -954,6 +955,8 @@ class _AnagramsState extends State<Anagrams> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
+                    width: 70.0,
+                    height: 70.0,
                     child: FlatButton(
                       onPressed: () {
                         return showDialog<void>(
@@ -1024,6 +1027,8 @@ class _AnagramsState extends State<Anagrams> {
                     ),
                   ),
                   Container(
+                    width: 70.0,
+                    height: 70.0,
                     child: FlatButton(
                       onPressed: () {
                         isPressed1 = false;
@@ -1046,6 +1051,9 @@ class _AnagramsState extends State<Anagrams> {
                     ),
                   ),
                 ]),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0),
+            ),
             /// BANNER AD
             AdmobBanner(
               ///adUnitId: ams.getBannerAdId(),
@@ -1053,10 +1061,6 @@ class _AnagramsState extends State<Anagrams> {
               adSize: AdmobBannerSize.BANNER,
             ),
           ]),
-
-
-
-
     );
   }
 }
@@ -1079,6 +1083,13 @@ class _HomeState extends State<Home> {
           title: Text("LocalEyes"),
           centerTitle: true,
           backgroundColor: Color(0xFF362d54),
+          leading: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.arrow_back,
+              color: Color(0xFF362d54),
+            ),
+          ),
           actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -1278,7 +1289,7 @@ class _AboutState extends State<About> {
                       Text(
                         'Users will be able to play a series of minigames, and all ad revenue will go to the local business THEY choose to support or a charity that supports local businesses in different areas. We will also reward users with coupons to their favourite local businesses in Richmond Hill, Ontario, Canada.',
                         style: TextStyle(
-                          fontSize: 15.0,
+                          fontSize: 14.0,
                           color: Colors.white,
                         ),
                         textAlign: TextAlign.center,
@@ -1307,7 +1318,7 @@ class _AboutState extends State<About> {
                       Text(
                         'LocalEyes is an organization that aims to promote and reimagine local food businesses in the Greater Toronto Area. With the outbreak of COVID-19, families were instructed to stay at home, limiting their opportunities to experience the tasteful dishes of local cuisine.',
                         style: TextStyle(
-                          fontSize: 15.0,
+                          fontSize: 14.0,
                           color: Colors.white,
                         ),
                         textAlign: TextAlign.center,
@@ -1336,7 +1347,7 @@ class _AboutState extends State<About> {
                       Text(
                         'We are 5 high school students from the Greater Toronto Area. This app was created as part of a project for Stanford Rebuild 2020. If you wish to contact us send us an email at localeyes.company@gmail.com or you can visit our instagram @localeyes.app',
                         style: TextStyle(
-                          fontSize: 15.0,
+                          fontSize: 14.0,
                           color: Colors.white,
                         ),
                         textAlign: TextAlign.center,
