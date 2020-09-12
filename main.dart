@@ -12,7 +12,7 @@ void main() {
 }
 
 Future<void> _couponClaim(
-    BuildContext context, String coupon, int cost, int eyes) {
+    BuildContext context, String coupon, int cost, int eyes, int level) {
   eyes -= cost;
   return showDialog<void>(
     context: context,
@@ -1684,19 +1684,19 @@ class _RewardsState extends State<Rewards> {
                       onPressed: () {
                         if (isPressed1 == true) {
                           if (eyes >= num1) {
-                            _couponClaim(context, coupon1, num1, eyes);
+                            _couponClaim(context, coupon1, num1, eyes, level);
                           } else {
                             _invalidCoupon(context);
                           }
                         } else if (isPressed2 == true) {
                           if (eyes >= num2) {
-                            _couponClaim(context, coupon2, num2, eyes);
+                            _couponClaim(context, coupon2, num2, eyes, level);
                           } else {
                             _invalidCoupon(context);
                           }
                         } else if (isPressed3 == true) {
                           if (eyes >= num2) {
-                            _couponClaim(context, coupon3, num3, eyes);
+                            _couponClaim(context, coupon3, num3, eyes, level);
                           } else {
                             _invalidCoupon(context);
                           }
