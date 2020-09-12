@@ -1536,12 +1536,14 @@ class _BusinessesState extends State<Businesses> {
 
 class Rewards extends StatefulWidget {
   final int eyes;
-  Rewards(this.eyes);
+  final int level;
+  Rewards(this.eyes, this.level);
   @override
-  _RewardsState createState() => _RewardsState(eyes);
+  _RewardsState createState() => _RewardsState(eyes, level);
 }
 
 class _RewardsState extends State<Rewards> {
+  int level;
   int eyes;
   int num1 = 5;
   int num2 = 5;
@@ -1549,7 +1551,7 @@ class _RewardsState extends State<Rewards> {
   String coupon1 = "Coupon 1";
   String coupon2 = "Coupon 2";
   String coupon3 = "Coupon 3";
-  _RewardsState(this.eyes);
+  _RewardsState(this.eyes, this.level);
   bool isPressed1 = false;
   bool isPressed2 = false;
   bool isPressed3 = false;
