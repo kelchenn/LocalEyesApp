@@ -1661,9 +1661,3 @@ class _RewardsState extends State<Rewards> {
 	);
   }
 }
-<<<<<<< HEAD
-
-
-=======
-///change
->>>>>>> d8a37826329d60de0d3b69fd8fd4933583835a57
