@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "438406437389",
+    "firebase_url": "https://localeyes-42932.firebaseio.com",
+    "project_id": "localeyes-42932",
+    "storage_bucket": "localeyes-42932.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438406437389:android:2b0ae0ae68c98659ac5344",
+        "android_client_info": {
+          "package_name": "com.example.localeyes_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438406437389-0ru8n4aank7tsl65n4smjbmf1mfd5tsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUvbrayks0mR_zFTFKaZGZXRZD8D5yl48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438406437389-0ru8n4aank7tsl65n4smjbmf1mfd5tsf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
