@@ -7,12 +7,11 @@ void main() {
   ///for ad
   //Admob.initialize("come.example.localeyes_app");
   int eyes = 0;
-  int level = 1;
-  runApp(MaterialApp(home: Home(eyes, level)));
+  runApp(MaterialApp(home: Home(eyes)));
 }
 
 Future<void> _couponClaim(
-	BuildContext context, String coupon, int cost, int eyes, int level) {
+    BuildContext context, String coupon, int cost, int eyes) {
   eyes -= cost;
   return showDialog<void>(
     context: context,
@@ -164,6 +163,7 @@ Future<void> _alert(BuildContext context) {
 }
 
 Future<void> _levelComplete(BuildContext context, int eyes, int level) {
+
   eyes += 5;
   return showDialog<void>(
     context: context,
@@ -276,7 +276,7 @@ class _AnagramsState extends State<Anagrams> {
   );
   /// anagrams variables
   int eyes;
-  int level;
+  int level = 1;
   bool isPressed1 = false;
   bool isPressed2 = false;
   bool isPressed3 = false;
@@ -1067,16 +1067,15 @@ class _AnagramsState extends State<Anagrams> {
 
 class Home extends StatefulWidget {
   final int eyes;
-  final int level;
-  Home(this.eyes, this.level);
+  Home(this.eyes);
   @override
-  _HomeState createState() => _HomeState(eyes, level);
+  _HomeState createState() => _HomeState(eyes);
 }
 
 class _HomeState extends State<Home> {
   int eyes;
   int level;
-  _HomeState(this.eyes, this.level);
+  _HomeState(this.eyes);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1535,22 +1534,20 @@ class _BusinessesState extends State<Businesses> {
 
 class Rewards extends StatefulWidget {
   final int eyes;
-  final int level;
-  Rewards(this.eyes, this.level);
+  Rewards(this.eyes);
   @override
-  _RewardsState createState() => _RewardsState(eyes, level);
+  _RewardsState createState() => _RewardsState(eyes);
 }
 
 class _RewardsState extends State<Rewards> {
   int eyes;
-  int level;
   int num1 = 5;
   int num2 = 5;
   int num3 = 5;
   String coupon1 = "Coupon 1";
   String coupon2 = "Coupon 2";
   String coupon3 = "Coupon 3";
-  _RewardsState(this.eyes, this.level);
+  _RewardsState(this.eyes);
   bool isPressed1 = false;
   bool isPressed2 = false;
   bool isPressed3 = false;
