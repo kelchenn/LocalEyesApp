@@ -1708,7 +1708,7 @@ class _RewardsState extends State<Rewards> {
                           )),
                       color: Color(0xFF362d54)),
                 ),
-              ]),
+              ]),  
         ),
       ),
     );
