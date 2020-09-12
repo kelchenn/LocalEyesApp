@@ -7,7 +7,8 @@ void main() {
   ///for ad
   //Admob.initialize("come.example.localeyes_app");
   int eyes = 0;
-  runApp(MaterialApp(home: Home(eyes)));
+  int level = 1;
+  runApp(MaterialApp(home: Home(eyes, level)));
 }
 
 Future<void> _couponClaim(
@@ -1067,15 +1068,16 @@ class _AnagramsState extends State<Anagrams> {
 
 class Home extends StatefulWidget {
   final int eyes;
-  Home(this.eyes);
+  final int level;
+  Home(this.eyes, this.level);
   @override
-  _HomeState createState() => _HomeState(eyes);
+  _HomeState createState() => _HomeState(eyes, level);
 }
 
 class _HomeState extends State<Home> {
   int eyes;
   int level;
-  _HomeState(this.eyes);
+  _HomeState(this.eyes, this.level);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
