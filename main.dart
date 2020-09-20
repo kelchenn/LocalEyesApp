@@ -2,13 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:localeyes_app/services/admob_service.dart';
+import 'package:localeyes_app/screens/wrapper.dart';
+import 'package:provider/provider.dart';
+import 'package:localeyes_app/services/auth.dart';
+import 'package:localeyes_app/models/user.dart';
 
 void main() {
   ///for ad
   //Admob.initialize("come.example.localeyes_app");
-  int eyes = 0;
-  int level = 1;
-  runApp(MaterialApp(home: Home(eyes, level)));
+  runApp(
+      StreamProvider<user>.value(
+          value: AuthService().user, //get user from auth.dart
+          child: MaterialApp(home: Wrapper())
+      )
+  ); //this is the only change padena made
 }
 
 Future<void> _couponClaim(
